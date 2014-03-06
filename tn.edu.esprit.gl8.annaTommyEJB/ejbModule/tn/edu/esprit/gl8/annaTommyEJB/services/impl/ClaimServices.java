@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import tn.edu.esprit.gl8.annaTommyEJB.domain.Claim;
+import tn.edu.esprit.gl8.annaTommyEJB.domain.User;
 import tn.edu.esprit.gl8.annaTommyEJB.services.interfaces.ClaimServicesLocal;
 import tn.edu.esprit.gl8.annaTommyEJB.services.interfaces.ClaimServicesRemote;
 
@@ -28,6 +29,17 @@ public class ClaimServices implements ClaimServicesRemote, ClaimServicesLocal {
 		boolean b = false;
 		try {
 			entityManager.persist(claim);
+			b = true;
+		} catch (Exception e) {
+			System.err.println("emmmm ...");
+		}
+		return b;
+	}
+
+	public boolean addUser(User user) {
+		boolean b = false;
+		try {
+			entityManager.persist(user);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("emmmm ...");

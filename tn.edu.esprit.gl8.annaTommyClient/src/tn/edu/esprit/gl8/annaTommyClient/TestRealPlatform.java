@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tn.edu.esprit.gl8.annaTommyEJB.domain.Claim;
+import tn.edu.esprit.gl8.annaTommyEJB.domain.User;
 import tn.edu.esprit.gl8.annaTommyEJB.services.interfaces.ClaimServicesRemote;
 
 public class TestRealPlatform {
@@ -19,7 +20,7 @@ public class TestRealPlatform {
 	public void init() {
 		try {
 			context = new InitialContext();
-			String jndiName = "ejb:/tn.edu.esprit.gl8.annaTommyEJB/ClaimServices!"
+			String jndiName = "ejb:tn.edu.esprit.gl8.annaTommyEAR/tn.edu.esprit.gl8.annaTommyEJB/ClaimServices!"
 					+ ClaimServicesRemote.class.getCanonicalName();
 			claimServicesRemote = (ClaimServicesRemote) context
 					.lookup(jndiName);
@@ -35,6 +36,12 @@ public class TestRealPlatform {
 		claim.setDescription("the JEE prof is fool");
 
 		Assert.assertTrue(claimServicesRemote.addClaim(claim));
+	}
+
+	@Test
+	public void shouldAddUser() {
+		User user = new User("tabassi");
+		Assert.assertTrue(claimServicesRemote.addUser(user));
 	}
 
 }

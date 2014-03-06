@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -25,6 +27,7 @@ public class User implements Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
@@ -48,6 +51,11 @@ public class User implements Serializable {
 
 	public void setClaims(List<Claim> claims) {
 		this.claims = claims;
+	}
+
+	public User(String name) {
+		super();
+		this.name = name;
 	}
 
 }
