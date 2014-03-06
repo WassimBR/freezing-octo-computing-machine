@@ -22,6 +22,23 @@ public class UserServicesBean implements Serializable {
 
 	}
 
+	public String doLogin() {
+		String redirect = null;
+		try {
+			User userFound = claimServicesLocal.login(user.getEmail(),
+					user.getPassword());
+			System.out.println(redirect);
+			redirect = "OK";
+
+		} catch (Exception e) {
+			System.out.println(redirect);
+			redirect = "KO";
+
+		}
+
+		return redirect;
+	}
+
 	public User getUser() {
 
 		return user;

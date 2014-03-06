@@ -10,4 +10,6 @@ public interface ClaimServicesLocal {
 	boolean addClaim(Claim claim);
 
 	boolean addUser(User user);
+
+	User login(String email, String password);
 }

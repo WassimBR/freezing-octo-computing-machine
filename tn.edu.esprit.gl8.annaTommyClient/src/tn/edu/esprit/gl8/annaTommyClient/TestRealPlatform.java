@@ -32,7 +32,6 @@ public class TestRealPlatform {
 	@Test
 	public void shouldAddClaim() {
 		Claim claim = new Claim();
-		claim.setId(1);
 		claim.setDescription("the JEE prof is fool");
 
 		Assert.assertTrue(claimServicesRemote.addClaim(claim));
@@ -42,6 +41,14 @@ public class TestRealPlatform {
 	public void shouldAddUser() {
 		User user = new User("tabassi");
 		Assert.assertTrue(claimServicesRemote.addUser(user));
+	}
+
+	@Test
+	public void shouldLogIn() {
+		Assert.assertEquals("esprit",
+				claimServicesRemote.login("esprit@esprit.com", "esprit")
+						.getName());
+
 	}
 
 }

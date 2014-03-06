@@ -3,6 +3,7 @@ package tn.edu.esprit.gl8.annaTommyEJB.services.impl;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.edu.esprit.gl8.annaTommyEJB.domain.Claim;
 import tn.edu.esprit.gl8.annaTommyEJB.domain.User;
@@ -47,4 +48,19 @@ public class ClaimServices implements ClaimServicesRemote, ClaimServicesLocal {
 		return b;
 	}
 
+	public User login(String email, String password) {
+		
+		User userFound = null ;
+		String jpql = "select u from User u where u.email=:param1 "
+				+ "and u.password=:param2 ";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param1", email);
+		query.setParameter("param2", password);
+		try {
+			userFound=(User) query.getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return userFound;
+	}
 }
